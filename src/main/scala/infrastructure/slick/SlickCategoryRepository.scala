@@ -4,8 +4,9 @@ package infrastructure.slick
 import domain.product.entities.Category
 import domain.product.repositories.CategoryRepository
 import domain.product.valueobjects.{CategoryId, ProductId}
+import domain.product.entities.Product
 
-class SlickCategoryRepository extends CategoryRepository
+class SlickCategoryRepository extends CategoryRepository with SlickRepository
 {
   override def findById(categoryId: CategoryId): Category = ???
 

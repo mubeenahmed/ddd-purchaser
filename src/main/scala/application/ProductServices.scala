@@ -1,7 +1,0 @@
-package application
-
-class ProductServices
-{
-
-
-}
