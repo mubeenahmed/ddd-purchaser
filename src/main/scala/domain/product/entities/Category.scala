@@ -4,13 +4,13 @@ package domain.product.entities
 import domain.product.valueobjects.{CategoryId, CategoryParentId}
 import domain.shared.Entity
 
-case class Category(val catId: CategoryId,
+case class Category(val id: CategoryId,
                     val products: List[Product],
                     val name: String,
                     val parentId: Option[CategoryParentId])
-  extends Entity[Category]
+  extends Entity[CategoryId]
 {
 
-  override def sameIdentityAs(t: Category): Boolean = t != null && catId.sameAsValue(t.catId)
+  override def sameIdentityAs(t: CategoryId): Boolean = t != null && id.sameAsValue(t)
 
 }

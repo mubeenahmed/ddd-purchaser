@@ -3,13 +3,13 @@ package domain.product.entities
 import domain.product.valueobjects.{ProductId, ProductRating}
 import domain.shared.Entity
 
-case class Product(val productId: ProductId,
+case class Product(val id: ProductId,
                    val productName: String,
                    val productRating: ProductRating,
                    val price: Double)
-  extends Entity[Product]
+  extends Entity[ProductId]
 {
 
-  override def sameIdentityAs(t: Product): Boolean = t != null && productId.sameAsValue(t.productId)
+  override def sameIdentityAs(t: ProductId): Boolean = t != null && id.sameAsValue(t)
 
 }

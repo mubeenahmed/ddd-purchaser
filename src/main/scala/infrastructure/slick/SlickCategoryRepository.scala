@@ -17,7 +17,7 @@ class SlickCategoryRepository extends CategoryRepository with SlickRepository
   val getCategoryResult = GetResult(r => Category(r.<<, r.<<, r.<<, r.<<))
 
   override def findOneById(categoryId: CategoryId): Future[Category] =
-    db.run(sql"select * from category where id = ${categoryId.id}".as[Category](getCategoryResult))
+    db.run(sql"select * from category where id = ${categoryId}".as[Category](getCategoryResult))
       .map(c => c.head)
 
 
@@ -26,11 +26,11 @@ class SlickCategoryRepository extends CategoryRepository with SlickRepository
       .map(c => c.toList)
 
   override def findAllProductsByCategoryId(categoryId: CategoryId): Future[List[Product]] =
-    db.run(sql"select * from product where categoryId = ${categoryId.id}".as[Product](getProductResult))
+    db.run(sql"select * from product where categoryId = ${categoryId}".as[Product](getProductResult))
       .map(c => c.toList)
 
   override def findOneProductById(productId: ProductId): Future[Product] =
-    db.run(sql"select * from product where productId = ${productId.id}".as[Product](getProductResult))
+    db.run(sql"select * from product where productId = ${productId}".as[Product](getProductResult))
       .map(c => c.head)
 
   override def save(category: Category): Future[Category] = ???
