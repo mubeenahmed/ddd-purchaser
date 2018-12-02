@@ -5,8 +5,12 @@ import domain.product.repositories.CategoryRepository
 import domain.product.valueobjects.CategoryId
 import domain.product.entities.Product
 
+import scala.concurrent.Future
+
 class ProductServiceImpl(val categoryRepository: CategoryRepository) extends ProductService
 {
-  override def getAllProductsByCategoryId(categoryId: CategoryId): List[Product] =
-    categoryRepository.findProductsByCategoryId(categoryId)
+  override def getAllProductsByCategoryId(categoryId: CategoryId): Future[List[Product]] =
+    categoryRepository.findAllProductsByCategoryId(categoryId)
+
+  override def saveProduct(product: Product): Product = ???
 }

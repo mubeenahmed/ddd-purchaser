@@ -1,4 +1,4 @@
-package domain.product.entities
+package domain.product.valueobjects
 
 import domain.shared.ValueObject
 

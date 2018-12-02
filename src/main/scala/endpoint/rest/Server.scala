@@ -3,6 +3,7 @@ package endpoint.rest
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
+import endpoint.rest.product.ProductRestApi
 
 import scala.concurrent.ExecutionContext
 

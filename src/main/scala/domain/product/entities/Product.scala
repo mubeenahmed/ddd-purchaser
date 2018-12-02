@@ -1,6 +1,6 @@
 package domain.product.entities
 
-import domain.product.valueobjects.ProductId
+import domain.product.valueobjects.{ProductId, ProductRating}
 import domain.shared.Entity
 
 case class Product(val productId: ProductId,

@@ -1,6 +1,6 @@
 package domain.product.entities
 
-import domain.product.valueobjects.OwnerId
+import domain.product.valueobjects.{OwnerId, OwnerRating}
 import domain.shared.Entity
 
 case class Owner(val ownerId: OwnerId, val ownerRating: OwnerRating) extends Entity[Owner] {

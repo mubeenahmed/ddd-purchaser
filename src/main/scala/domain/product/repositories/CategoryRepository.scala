@@ -5,12 +5,16 @@ import domain.product.entities.Category
 import domain.product.valueobjects.{CategoryId, ProductId}
 import domain.product.entities.Product
 
+import scala.concurrent.Future
+
 trait CategoryRepository
 {
-  def findById(categoryId: CategoryId): Category
-  def findAll: List[Category]
-  def findProductsByCategoryId(categoryId: CategoryId): List[Product]
-  def findProductsByCategoryId(categoryId: CategoryId, productId: ProductId): Product
-  def save(category: Category): Category
+  def findOneById(categoryId: CategoryId): Future[Category]
+  def findAll: Future[List[Category]]
+
+  def findAllProductsByCategoryId(categoryId: CategoryId): Future[List[Product]]
+  def findOneProductById(productId: ProductId): Future[Product]
+
+  def save(category: Category): Future[Category]
   def nextCategoryId: CategoryId
 }
