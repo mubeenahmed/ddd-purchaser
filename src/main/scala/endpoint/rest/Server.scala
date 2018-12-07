@@ -6,6 +6,7 @@ import akka.stream.ActorMaterializer
 import endpoint.rest.product.ProductRestApi
 
 import scala.concurrent.ExecutionContext
+import scala.concurrent.ExecutionContext.Implicits.global
 
 object Server {
 

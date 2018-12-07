@@ -2,12 +2,12 @@ package endpoint.rest.product
 
 import io.bfil.automapper._
 import domain.product.entities.{Category, Product}
-import domain.product.valueobjects.{ProductId, ProductRating}
+import scala.concurrent.ExecutionContext.Implicits.global
 
-case class ProductIdDto(val id: Long)
-case class CategoryIdDto(val id: Long)
-case class ProductRatingDto(val id: Long)
-case class CategoryParentIdDto(val id: Long)
+case class ProductIdDto(val id: String)
+case class CategoryIdDto(val id: String)
+case class ProductRatingDto(val rate: Double)
+case class CategoryParentIdDto(val id: String)
 
 case class ProductDto(productId: ProductIdDto,
                       productName: String,
@@ -18,9 +18,9 @@ case class ProductDto(productId: ProductIdDto,
 }
 
 
-case class CategoryDto(categoryId: CategoryIdDto,
+case class CategoryDto(catId: CategoryIdDto,
                        products: List[ProductDto],
-                       categoryName: String,
+                       name: String,
                        parentId: Option[CategoryParentIdDto])
 {
   def toDomain = automap(this).to[Category]

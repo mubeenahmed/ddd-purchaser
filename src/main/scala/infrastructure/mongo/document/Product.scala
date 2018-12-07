@@ -6,7 +6,8 @@ import org.bson.types.ObjectId
 
 object Product {
 
-  def apply(name: String, rating: Double, price: Double) = Product(ProductId(new ObjectId().toString), name, ProductRating(rating), price)
+  def apply(name: String, rating: Double, price: Double) =
+    domain.product.entities.Product(ProductId(new ObjectId().toString), name, ProductRating(rating), price)
   def apply(id: ObjectId, name: String, rating: Double, price: Double) =
-    Product(ProductId(id.toString), name, ProductRating(rating), price)
+    domain.product.entities.Product(ProductId(id.toString), name, ProductRating(rating), price)
 }

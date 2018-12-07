@@ -10,10 +10,10 @@ import scala.concurrent.Future
 trait CategoryRepository
 {
   def findOneById(categoryId: CategoryId): Future[Category]
-  def findAll: Future[List[Category]]
+  def findAll: Future[Seq[Category]]
 
-  def findAllProductsByCategoryId(categoryId: CategoryId): Future[List[Product]]
-  def findOneProductById(productId: ProductId): Future[Product]
+  def findAllProductsByCategoryId(categoryId: CategoryId): Future[Seq[Product]]
+  def findOneProductById(categoryId: CategoryId, productId: ProductId): Future[Product]
 
   def save(category: Category): Future[Category]
   def nextCategoryId: CategoryId
