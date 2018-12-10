@@ -2,7 +2,7 @@ package product.domain.product.entities
 
 
 import product.domain.product.valueobjects.{CategoryId, CategoryParentId}
-import domain.shared.Entity
+import shared.Entity
 
 case class Category(val catId: CategoryId,
                     val products: List[Product],

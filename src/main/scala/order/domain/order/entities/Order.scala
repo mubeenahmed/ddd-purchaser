@@ -1,7 +1,7 @@
 package order.domain.order.entities
 
 import order.domain.order.valueobjects._
-import domain.shared.Entity
+import shared.Entity
 
 case class Order(val orderId: OrderId,
                  val status: OrderStatus,

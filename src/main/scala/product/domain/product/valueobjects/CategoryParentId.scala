@@ -1,6 +1,6 @@
 package product.domain.product.valueobjects
 
-import domain.shared.ValueObject
+import shared.ValueObject
 
 case class CategoryParentId(val id: String) extends ValueObject[CategoryParentId]
 {

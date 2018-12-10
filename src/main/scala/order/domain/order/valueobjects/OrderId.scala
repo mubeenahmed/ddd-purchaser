@@ -1,6 +1,6 @@
 package order.domain.order.valueobjects
 
-import domain.shared.ValueObject
+import shared.ValueObject
 
 case class OrderId(val id: String) extends ValueObject[OrderId]
 {
