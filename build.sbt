@@ -10,5 +10,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http" % "10.1.3",
   "com.typesafe.akka" %% "akka-http-spray-json" % "10.1.5",
   "io.bfil" %% "automapper" % "0.6.1",
+  "com.typesafe.slick" %% "slick" % "3.2.3",
   "org.mongodb.scala" %% "mongo-scala-driver" % "2.5.0"
+
 )

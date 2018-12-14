@@ -7,7 +7,7 @@ case class Order(val orderId: OrderId,
                  val status: OrderStatus,
                  val products: List[OrderedProduct],
                  val customer: Customer,
-                 val shippment: Shippment,
+                 val shippmentAddress: ShippmentAddress,
                  val payment: Payment ) extends Entity[OrderId]
 {
   override def sameIdentityAs(t: OrderId): Boolean = t != null && orderId.sameAsValue(t)
