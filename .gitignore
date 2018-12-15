@@ -1,2 +1,3 @@
-.idea
-target/
+purchase-service/.idea
+purchase-service/target/
+auth-service/node_modules/
