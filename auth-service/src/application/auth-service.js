@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../infrastructure/sequelize-conf').User;
 const UserDomain = require('../domain/User'); 
-
+const jwt = require('jsonwebtoken')
 
 const checkLogin = (req, res) => {
     const { email, password } = req.body
@@ -10,15 +10,18 @@ const checkLogin = (req, res) => {
         .then(data => {
             if(data == null)
             {
-                return res.status(401).send('Oops! inccorect logged in credentails');
+                return res.status(401).send({auth: false});
             }
             const userDomain = new UserDomain({email: data.email, password: data.password})
             const isPasswordOk = userDomain.compareHash(password)
             if(isPasswordOk)
             {
-                return res.status(200).send('You are logged in! I will get you with token later')
+                const auth = { auth: true, 
+                    token: jwt.sign({id: data.id}, "thisissecret") 
+                }
+                return res.status(200).send(auth)
             }
-            return res.status(401).send('Oops! incorrect logged in credentials')
+            return res.status(401).send({auth: false})
         }); 
 }
 

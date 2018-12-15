@@ -29,8 +29,8 @@ const getUserById = (req, res) => {
 }
 
 const getSelfUser = (req, res) => {
-    const id = 1 // Assume from authorization token
-    User.findOne(id)
+    const id = req.user
+    User.findByPk(id)
         .then(data => {
             res.send(200, {id: data.id, name: data.name })
         })

@@ -2,6 +2,7 @@
 const { body } = require('express-validator/check')
 const express = require('express')
 const router = express.Router()
+const passport = require('passport')
 
 const userService = require('../application/user-service')
 
@@ -18,6 +19,6 @@ router.post('/user/create',
  * This route takes Authorize token, and fetching ID from the Token to get 
  * information
  */
-router.get('/user', userService.getSelfUser)
+router.get('/user', passport.authenticate('jwt', {session: false}), userService.getSelfUser)
 
 module.exports = router
