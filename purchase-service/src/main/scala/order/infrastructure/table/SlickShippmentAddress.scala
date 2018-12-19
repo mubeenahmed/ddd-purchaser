@@ -2,6 +2,7 @@ package order.infrastructure.table
 
 
 import slick.jdbc.H2Profile.api._
+import slick.lifted
 import slick.lifted._
 
 
@@ -13,5 +14,11 @@ class SlickShippmentAddress(tag: Tag) extends Table[(Int, Int, String, String, S
   def address2 = column[String]("address2")
   def postalCode = column[String]("postal_code")
 
+  def order = foreignKey("ORDER", orderId, SlickOrderedProduct.orderProduct )(_.id)
   def * = (id, orderId, address1, address2, postalCode)
+}
+
+object SlickShippmentAddress
+{
+  lazy val shippmentAddress = lifted.TableQuery[SlickShippmentAddress]
 }
