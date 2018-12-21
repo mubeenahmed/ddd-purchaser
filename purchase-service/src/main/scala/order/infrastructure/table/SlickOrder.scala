@@ -3,8 +3,6 @@ package order.infrastructure.table
 import java.time.LocalDateTime
 
 import slick.jdbc.H2Profile.api._
-import slick.lifted
-import slick.lifted._
 
 class SlickOrder(tag: Tag)  extends Table[(Int, String, String, Int)](tag, "order")
 {
@@ -19,5 +17,5 @@ class SlickOrder(tag: Tag)  extends Table[(Int, String, String, Int)](tag, "orde
 
 object SlickOrder
 {
-  lazy val order = lifted.TableQuery[SlickOrder]
+  lazy val order = TableQuery[SlickOrder]
 }

@@ -15,7 +15,8 @@ class OrderServiceImpl(orderRepository: OrderRepository) extends OrderService
 
   override def getOrderById(orderId: OrderId): Future[Order] = ???
 
-  override def getOrderByCustomer(customerId: Customer): Future[Seq[Order]] = ???
+  override def getOrderByCustomer(customerId: Customer): Future[Seq[Order]] =
+    orderRepository.getListOfOrdersByCustomer(customerId)
 
   override def getOrderByCustomer(customerId: Customer, orderId: OrderId): Future[Order] = ???
 }

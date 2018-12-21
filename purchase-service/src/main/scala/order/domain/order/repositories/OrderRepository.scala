@@ -7,7 +7,8 @@ import scala.concurrent.Future
 
 trait OrderRepository
 {
-  def getListOfOrderById(orderId: OrderId): Future[Seq[Order]]
+  def getListOfOrders: Future[Seq[Order]]
+  def getOrderById(orderId: OrderId): Future[Order]
   def getListOfUndeliveredOrders: Future[Seq[Order]]
   def getListOfOrdersByCustomer(customer: Customer): Future[Seq[Order]]
   def createOrder(order: Order): Future[Order]
