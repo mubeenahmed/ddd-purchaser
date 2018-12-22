@@ -12,7 +12,8 @@ const sequelize = new Sequelize('auth-purchaser', 'postgres', 'root', {
 });
 
 const models = {
-  User: sequelize.import('./model/user')
+  User: sequelize.import('./model/user'),
+  Profile: sequelize.import('./model/profile')
 };
 
 Object.keys(models).forEach(key => {

@@ -20,5 +20,6 @@ router.post('/user/create',
  * information
  */
 router.get('/user', passport.authenticate('jwt', {session: false}), userService.getSelfUser)
+router.put('/profile', passport.authenticate('jwt', {session: false}), userService.addProfilePicture)
 
 module.exports = router

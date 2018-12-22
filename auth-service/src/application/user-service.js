@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../infrastructure/sequelize-conf').User;
+const Profile = require('../infrastructure/sequelize-conf').Profile
 const UserDomain = require('../domain/User'); 
 
 const create = (req, res) =>
@@ -18,6 +19,21 @@ const create = (req, res) =>
         .catch((err) => {
             res.status(400).send(err.message)
         });
+}
+
+const addProfilePicture = (req, res) => 
+{
+    const user = req.user
+    req.getValidationResult()
+        .then(validationHandler())
+        .then(() => {
+            // Deactivate any user's profile picture
+            Profile.update({ isActive: false }, { where: {user_id: user }})
+                .then(result => {
+                    Profile.create({ user_id: user, profile: profileUrl, isActive: true})
+                        .then(result => res.send(200, {}))
+                }) 
+        })
 }
 
 const getUserById = (req, res) => {
