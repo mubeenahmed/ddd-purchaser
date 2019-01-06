@@ -12,5 +12,9 @@ libraryDependencies ++= Seq(
   "io.bfil" %% "automapper" % "0.6.1",
   "com.typesafe.slick" %% "slick" % "3.2.3",
   "org.mongodb.scala" %% "mongo-scala-driver" % "2.5.0",
-  "org.apache.kafka" %% "kafka" % "0.10.1.1"
+  "org.apache.kafka" %% "kafka" % "0.10.1.1",
+  "com.goyeau" %% "kafka-streams-circe" % "0.5",
+  "io.circe" %% "circe-generic" % "0.11.0",
+  "org.scalatest" %% "scalatest" % "3.0.5" % "test",
+  "org.scalamock" %% "scalamock" % "4.1.0" % "test"
 )

@@ -8,12 +8,14 @@ import order.infrastructure.table.{SlickOrder, SlickOrderedProduct, SlickPayment
 
 import scala.concurrent.Future
 import slick.jdbc.H2Profile.api._
+import scala.concurrent.ExecutionContext.Implicits.global
+
 class OrderRepsoitoryImpl extends OrderRepository with SlickConfiguration
 {
   override def getListOfOrders : Future[Seq[Order]] =
     db.run(SlickOrder.order
       .join(SlickShippmentAddress.shippmentAddress)
-      .on(_.id == _.orderId)
+      .on(_.id === _.orderId)
       .result
       .map( x => mapToSeqOfOrders(x) )
       .map(x => x.toSeq))
@@ -24,9 +26,9 @@ class OrderRepsoitoryImpl extends OrderRepository with SlickConfiguration
 
   override def getListOfOrdersByCustomer(customer: Customer): Future[Seq[Order]] =
     db.run(SlickOrder.order
-      .filter(x => x.customerId == customer.customerId)
+      .filter(x => x.customerId === customer.customerId)
       .join(SlickShippmentAddress.shippmentAddress)
-      .on(_.id == _.orderId)
+      .on(_.id === _.orderId)
       .result
       .map( x => mapToSeqOfOrders(x) )
       .map(x => x.toSeq))
@@ -42,7 +44,7 @@ class OrderRepsoitoryImpl extends OrderRepository with SlickConfiguration
 
   override def getOrderById(orderId: OrderId): Future[Order] = db.run(SlickOrder.order
     .join(SlickShippmentAddress.shippmentAddress)
-    .on(_.id == _.orderId)
+    .on(_.id === _.orderId)
     .result.headOption.map {
       case Some(x) => mapToOrder(x)
       case None => throw NotFoundException("order not found")
