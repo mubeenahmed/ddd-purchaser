@@ -4,12 +4,11 @@ import java.time.Instant
 import java.util.Properties
 
 import com.goyeau.kafka.streams.circe.CirceSerdes
-//import io.circe._, io.circe.generic.semiauto.{ deriveEncoder }
-import io.circe._, io.circe.generic.semiauto._
+import io.circe._
 
 
 import org.apache.kafka.clients.producer.ProducerConfig
-import shared.kakfa.{Producer, Record}
+import shared.kakfa.Record
 import product.domain.product.entities.Product
 import product.domain.product.valueobjects.ProductId
 import shared.kakfa.ProducerHelper._
@@ -24,8 +23,8 @@ trait KafkaProductProducer {
     override def timestamp(value: Product): Long = Instant.EPOCH.getEpochSecond
   }
 
-  implicit val encodeProduct: Encoder[Product] = deriveEncoder[Product]
-  implicit val encodeProductId: Encoder[ProductId] = deriveEncoder[ProductId]
+  implicit val encodeProduct: Encoder[Product]
+  implicit val encodeProductId: Encoder[ProductId]
 
   implicit val valueSerializer = CirceSerdes.serializer[Product]
   implicit val keySerializer = CirceSerdes.serializer[ProductId]
