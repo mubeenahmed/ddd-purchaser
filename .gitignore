@@ -2,3 +2,5 @@ purchase-service/.idea
 purchase-service/project/
 purchase-service/target/
 auth-service/node_modules/
+search-service/venv/
+search-service/configuration.cfg
