@@ -3,6 +3,7 @@ from flask import Flask
 from flask import request
 from config.config import DevelopmentConfig as config
 from elasticsearch_service.search import Search
+from flask import jsonify
 
 app = Flask(__name__)
 app.config['DEBUG'] = config.DEBUG
@@ -22,5 +23,20 @@ def search():
 
     elasticsearch_search = Search(user_search)
     results = elasticsearch_search.get_result()
-    return results
+    return jsonify(results)
+
+@app.route('/search/all')
+def search_all():
+    page_index = request.args.get('page_index')
+    page_size = request.args.get('page_size')
+
+    elasticsearch_search = Search(None)
+    results = elasticsearch_search.get_all_result()
+    return jsonify(results)
+
+@app.route('/search/<id>')
+def search_by_id(id):
+    elasticsearch_search = Search(None)
+    results = elasticsearch_search.get_by_id(id)
+    return jsonify(results)
     

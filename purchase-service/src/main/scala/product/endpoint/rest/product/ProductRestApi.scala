@@ -2,14 +2,11 @@ package product.endpoint.rest.product
 
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import akka.http.scaladsl.server.Directives._
-
 import product.application.ProductService
 import product.application.impl.ProductServiceImpl
-
 import product.domain.product.entities.{Category, Product}
 import product.domain.product.repositories.CategoryRepository
-import product.domain.product.valueobjects.{CategoryId, CategoryParentId, ProductId, ProductRating}
-
+import product.domain.product.valueobjects._
 import product.infrastructure.mongo.MongoCategoryRepository
 import spray.json._
 
@@ -30,8 +27,9 @@ trait JsonSupport extends SprayJsonSupport with DefaultJsonProtocol
   implicit val categoryIdDto = jsonFormat1(CategoryId)
   implicit val parentCategoryIdDto = jsonFormat1(CategoryParentId)
   implicit val productRatingDto = jsonFormat1(ProductRating)
+  implicit val productPhotos = jsonFormat3(ProductPhotos)
 
-  implicit val productDto = jsonFormat4(Product)
+  implicit val productDto = jsonFormat5(Product)
   implicit val categoryDto = jsonFormat4(Category)
 }
 

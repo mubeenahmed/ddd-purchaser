@@ -7,6 +7,7 @@ class DevelopmentConfig:
     DEBUG = True
     ENV = 'development'
     APP = 'product_api.py'
+    INDEX='purchaser'
 
 class ProductionConfig:
     DEBUG = False

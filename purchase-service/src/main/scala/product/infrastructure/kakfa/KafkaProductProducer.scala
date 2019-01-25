@@ -4,9 +4,8 @@ import java.time.Instant
 import java.util.Properties
 
 import com.goyeau.kafka.streams.circe.CirceSerdes
+import com.typesafe.config.ConfigFactory
 import io.circe._
-
-
 import org.apache.kafka.clients.producer.ProducerConfig
 import shared.kakfa.Record
 import product.domain.product.entities.Product
@@ -15,8 +14,13 @@ import shared.kakfa.ProducerHelper._
 
 trait KafkaProductProducer {
 
+  val properties = ConfigFactory.load()
+  val productCreateTopic = properties.getString("kafka.product.topic")
+  val host = properties.getString("kafka.host")
+  val port = properties.getInt("kafka.port")
+
   implicit val record: Record[ProductId, Product] = new Record[ProductId, Product] {
-    override def topic: String = "product.create"
+    override def topic: String = productCreateTopic
 
     override def key(value: Product): ProductId = value.productId
 
@@ -30,7 +34,7 @@ trait KafkaProductProducer {
   implicit val keySerializer = CirceSerdes.serializer[ProductId]
 
   val config = new Properties()
-  config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9902")
+  config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, s"$host:$port")
 
 
   val productProducer = shared.kakfa.Producer[Product](config)
